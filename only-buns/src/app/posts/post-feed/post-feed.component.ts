@@ -5,6 +5,8 @@ import { Comment } from '../model/comment.model';
 import { AuthService } from '../auth.service';
 import { UserService } from '../../users/user.service';
 import { User } from '../../users/model/user.model';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-post-feed',
@@ -25,6 +27,7 @@ export class PostFeedComponent implements OnInit {
   constructor(
     private service: PostService,
     private authService: AuthService,
+    private router: Router,
     private userService: UserService) {}
   
 
@@ -138,7 +141,8 @@ export class PostFeedComponent implements OnInit {
 
   // EDIT POST
   editPost(id: number): void {
-    console.log("Dear Kalaba, add edit things here.");
+    //console.log("Dear Kalaba, add edit things here.");
+    this.router.navigate(['/edit-post', id]);
   }
 
   // POST MODAL

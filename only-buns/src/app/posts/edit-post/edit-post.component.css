@@ -1,0 +1,108 @@
+/* Reuse all styles from create-post.component.css */
+/* Container styling */
+.create-post-container {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+}
+
+/* Header styling */
+.create-post-container h2 {
+  text-align: center;
+  color: #333333;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* Form fields styling */
+.create-post-container label {
+  font-size: 14px;
+  color: #888888;
+  display: block;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.create-post-container input[type="text"],
+.create-post-container input[type="file"] {
+  width: 100%;
+  padding: 0.7rem;
+  font-size: 14px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s;
+}
+
+.create-post-container input[type="text"]:focus,
+.create-post-container input[type="file"]:focus {
+  border-color: #b2dffc;
+}
+
+/* Image preview styling */
+.image-preview {
+  width: 100%;
+  max-height: 250px;
+  margin-top: 10px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Submit button styling */
+.create-post-container button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #3897f0;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.2s;
+}
+
+.create-post-container button:disabled {
+  background-color: #b2dffc;
+  cursor: not-allowed;
+}
+
+.create-post-container button:hover:not(:disabled) {
+  background-color: #3073c1;
+}
+
+.map-field {
+  display: block;
+  max-width: 500px;
+  margin-right: 10%;
+}
+
+/* Additional styles for edit component */
+.current-image-note {
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.button-group button {
+  width: 50%;
+}
+
+.cancel-button {
+  background-color: #ccc !important;
+}
+
+.cancel-button:hover {
+  background-color: #999 !important;
+}

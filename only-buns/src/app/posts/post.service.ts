@@ -37,9 +37,14 @@ export class PostService {
     const params = new HttpParams().set("userId", userId.toString());
     return this.http.put<{ message: string, likesCount: number }>(`${this.apiUrl}/like/${postId}`, null, { params });
   }
-
   getUserById(userId: number): Observable<user> {
     return this.http.get<user>(`${this.apiUrl}/users/show/${userId}`);
   }
-  
+  getPostById(id: number): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/getPost/${id}`);
+  }
+  updatePost(id: number, formData: FormData): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${id}`, formData);
+  }
+
 }
