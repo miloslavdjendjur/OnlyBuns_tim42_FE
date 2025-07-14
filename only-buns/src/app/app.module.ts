@@ -19,6 +19,7 @@ import { MapComponent } from './layout/map/map.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { PostModalComponent } from './posts/post-modal/post-modal.component';
 import { ShowAllUsersComponent } from './users/show-all-users/show-all-users.component';
+import { NetworkTrendsComponent } from './posts/network-trends/network-trends.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ShowAllUsersComponent } from './users/show-all-users/show-all-users.com
     MapComponent,
     UserProfileComponent,
     PostModalComponent,
-    ShowAllUsersComponent
+    ShowAllUsersComponent,
+    NetworkTrendsComponent
   ],
   imports: [
     BrowserModule,

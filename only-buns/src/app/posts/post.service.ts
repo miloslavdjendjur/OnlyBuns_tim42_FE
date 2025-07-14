@@ -42,4 +42,9 @@ export class PostService {
     return this.http.get<user>(`${this.apiUrl}/users/show/${userId}`);
   }
   
+  getTopLikersLast7Days(): Observable<{ userId: number, username: string, likeCount: number }[]> {
+    return this.http.get<{ userId: number, username: string, likeCount: number }[]>(
+      `${this.apiUrl}/analytics/top-likers-last7days`
+    );
+  }
 }
