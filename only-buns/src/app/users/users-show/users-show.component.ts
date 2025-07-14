@@ -35,6 +35,7 @@ export class UsersShowComponent implements OnInit {
       this.service.getAllUsers(this.userId).subscribe({
         next: (result: User[]) => {
           this.users = result;
+          //console.log(result);
         },
         error: (err: any) => {
           console.log(err);
