@@ -23,6 +23,8 @@ import { AdminPageComponent } from './users/admin-page/admin-page.component';
 import { EditPostComponent } from './posts/edit-post/edit-post.component';
 import { TrendsComponent } from './posts/trends/trends.component';
 import { AnalyticsComponent } from './posts/analytics/analytics.component';
+import { NgChartsModule } from 'ng2-charts';
+
 
 
 @NgModule({
@@ -51,7 +53,8 @@ import { AnalyticsComponent } from './posts/analytics/analytics.component';
     RouterModule,
     FormsModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    NgChartsModule
   ],
   providers: [
     provideHttpClient(withFetch())

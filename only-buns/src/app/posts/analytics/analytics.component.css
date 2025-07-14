@@ -10,6 +10,202 @@ h1 {
   margin-bottom: 40px;
 }
 
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  padding: 40px;
+}
+
+.error {
+  text-align: center;
+  color: #ef4444;
+  padding: 20px;
+  background: #fee;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.metric-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.metric-card h3 {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.metric-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.statistics-section {
+  background: #f8f9fa;
+  padding: 40px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+}
+
+.statistics-section h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.stats-comparison {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.stat-group {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.stat-group h3 {
+  color: #3897f0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.stat-item:last-child {
+  border-bottom: none;
+}
+
+.stat-label {
+  color: #666;
+  font-weight: 500;
+}
+
+.stat-value {
+  color: #333;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+
+.user-activity-section {
+  margin-top: 40px;
+}
+
+.user-activity-section h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.activity-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.activity-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-top: 4px solid #ccc;
+}
+
+.activity-card.posts {
+  border-top-color: #22c55e;
+}
+
+.activity-card.comments {
+  border-top-color: #3897f0;
+}
+
+.activity-card.inactive {
+  border-top-color: #ef4444;
+}
+
+.activity-card h4 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.percentage {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.activity-card.posts .percentage {
+  color: #22c55e;
+}
+
+.activity-card.comments .percentage {
+  color: #3897f0;
+}
+
+.activity-card.inactive .percentage {
+  color: #ef4444;
+}
+
+.activity-card p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.chart-container {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 40px;
+}
+
+.chart-container h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.chart-wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+  height: 400px;
+}
+
+@media (max-width: 768px) {
+  .stats-comparison {
+    grid-template-columns: 1fr;
+  }
+  
+  .activity-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

@@ -15,7 +15,7 @@
       <!-- *ngIf="isAuthenticated && !isAdmin" -->
       <div class="center-nav-icons" *ngIf="isAuthenticated">
         <ul class="nav-icons">
-          <li><a routerLink="/"><i class="fas fa-home"></i></a></li>
+          <li><a (click)="navigateHome()"><i class="fas fa-home"></i></a></li>
           <li><a routerLink="/trends"><i class="fa fa-compass" aria-hidden="true"></i></a></li>
           <li><a routerLink="/create-post"><i class="far fa-plus-square"></i></a></li>
           <li><a routerLink="/nearby"><i class="fa fa-map-marker" aria-hidden="true"></i></a></li>

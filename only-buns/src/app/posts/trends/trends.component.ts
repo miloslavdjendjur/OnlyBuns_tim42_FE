@@ -20,12 +20,5 @@ export class TrendsComponent implements OnInit {
 
   ngOnInit(): void {
     // Ovde se kasnije poziva servis za dobavljanje podataka
-    const user = this.authService.getLoggedInUser();
-    if(user && user.role === 'ADMIN'){
-
-    }
-    else{
-      this.router.navigate(['/']);
-    }
   }
 }
