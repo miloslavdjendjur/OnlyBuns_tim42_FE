@@ -1,0 +1,34 @@
+<div class="create-post-container">
+  <h2>Izmeni post</h2>
+  <form [formGroup]="editPostForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="file">Promeni sliku zeca</label>
+      <input type="file" id="file" (change)="onFileChange($event)">
+      <img *ngIf="imagePreview" [src]="imagePreview" class="image-preview">
+      <p *ngIf="!isImageChanged && currentImagePath" class="current-image-note">
+        Trenutna slika će biti zadržana ako ne odaberete novu
+      </p>
+    </div>
+
+    <div>
+      <label for="description">Opis</label>
+      <input type="text" id="description" formControlName="description" placeholder="Unesite opis posta">
+    </div>
+    
+    <div>
+      <label>Promeni lokaciju na mapi</label>
+      <br>
+      <app-map 
+        class="map-field" 
+        [initialLocation]="locationSelected"
+        (locationSelected)="onLocationSelected($event)">
+      </app-map>
+    </div>
+    <br>
+
+    <div class="button-group">
+      <button type="submit" [disabled]="editPostForm.invalid">Sačuvaj izmene</button>
+      <button type="button" class="cancel-button" (click)="onCancel()">Otkaži</button>
+    </div>
+  </form>
+</div>

@@ -11,7 +11,7 @@ export class NavbarComponent {
   dropdownOpen = false;
   isAuthenticated = false; 
   isAdmin = false;
-  userId = 0
+  userId = 0 
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -40,5 +40,15 @@ export class NavbarComponent {
 
   navigateToProfile(): void{
     this.router.navigate([`/profile/${this.userId}`]);
+  }
+  navigateHome() : void {
+    //OVO TREBA DA PROSIRITE U KOLIKO HOCETE DA USER KOJI NIJE ADMIN IMA SVOJ PAGE NA KOJI CE SE NAVIGIRATI
+    const user = this.authService.getLoggedInUser();
+    if(user && user.role === 'ADMIN'){
+      this.router.navigate(['/admin-page']);
+    }
+    else{
+      this.router.navigate(['/']);
+    } 
   }
 }

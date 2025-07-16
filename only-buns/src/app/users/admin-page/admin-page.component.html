@@ -1,0 +1,60 @@
+<div class="admin-container">
+  <h1>Administrator Dashboard</h1>
+  
+  <div class="admin-cards">
+    <!-- Lista objava svih korisnika -->
+    <div class="admin-card" routerLink="/all-posts">
+      <i class="fa fa-feed"></i>
+      <h3>Sve objave</h3>
+      <p>Pregledaj sve objave svih korisnika</p>
+      <span class="arrow">→</span>
+    </div>
+
+    <!-- Prikaz trendova na mrezi -->
+    <div class="admin-card" routerLink="/trends">
+      <i class="fa fa-line-chart"></i>
+      <h3>Trendovi</h3>
+      <p>Analiziraj popularne teme i hashtagove</p>
+      <span class="arrow">→</span>
+    </div>
+
+    <!-- Analitika aplikacije -->
+    <div class="admin-card" routerLink="/analytics">
+      <i class="fa fa-bar-chart"></i>
+      <h3>Analitika</h3>
+      <p>Statistika korišćenja aplikacije</p>
+      <span class="arrow">→</span>
+    </div>
+
+    <!-- Prikaz profila svih korisnika -->
+    <div class="admin-card" routerLink="/all-users">
+      <i class="fa fa-users"></i>
+      <h3>Svi korisnici</h3>
+      <p>Upravljaj korisničkim nalozima</p>
+      <span class="arrow">→</span>
+    </div>
+  </div>
+
+  <!-- Statistika sekcija -->
+  <div class="stats-section">
+    <h2>Brza statistika</h2>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-number">{{ totalUsers }}</div>
+        <div class="stat-label">Ukupno korisnika</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">{{ totalPosts }}</div>
+        <div class="stat-label">Ukupno objava</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">{{ activeToday }}</div>
+        <div class="stat-label">Aktivno danas</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">{{ newUsers }}</div>
+        <div class="stat-label">Novih korisnika (7 dana)</div>
+      </div>
+    </div>
+  </div>
+</div>

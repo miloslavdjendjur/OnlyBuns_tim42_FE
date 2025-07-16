@@ -19,6 +19,12 @@ import { MapComponent } from './layout/map/map.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { PostModalComponent } from './posts/post-modal/post-modal.component';
 import { ShowAllUsersComponent } from './users/show-all-users/show-all-users.component';
+import { AdminPageComponent } from './users/admin-page/admin-page.component';
+import { EditPostComponent } from './posts/edit-post/edit-post.component';
+import { TrendsComponent } from './posts/trends/trends.component';
+import { AnalyticsComponent } from './posts/analytics/analytics.component';
+import { NgChartsModule } from 'ng2-charts';
+
 
 
 @NgModule({
@@ -34,7 +40,11 @@ import { ShowAllUsersComponent } from './users/show-all-users/show-all-users.com
     MapComponent,
     UserProfileComponent,
     PostModalComponent,
-    ShowAllUsersComponent
+    ShowAllUsersComponent,
+    AdminPageComponent,
+    EditPostComponent,
+    TrendsComponent,
+    AnalyticsComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +53,8 @@ import { ShowAllUsersComponent } from './users/show-all-users/show-all-users.com
     RouterModule,
     FormsModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    NgChartsModule
   ],
   providers: [
     provideHttpClient(withFetch())
