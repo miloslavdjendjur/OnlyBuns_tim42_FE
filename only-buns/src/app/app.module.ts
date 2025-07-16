@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreatePostComponent } from './posts/create-post/create-post.component';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch } from '@angular/common/http';
 import { LoginComponent } from './infrastructure/auth/login/login.component';
 import { RegisterComponent } from './infrastructure/auth/register/register.component';
 import { ActivationComponent } from './infrastructure/auth/activation/activation.component';
@@ -20,6 +20,8 @@ import { UserProfileComponent } from './users/user-profile/user-profile.componen
 import { PostModalComponent } from './posts/post-modal/post-modal.component';
 import { ShowAllUsersComponent } from './users/show-all-users/show-all-users.component';
 import { NetworkTrendsComponent } from './posts/network-trends/network-trends.component';
+import { NearbyPostsMapComponent } from './posts/nearby-posts-map/nearby-posts-map.component';
+import { AuthInterceptor } from './auth.interceptor';
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { NetworkTrendsComponent } from './posts/network-trends/network-trends.co
     UserProfileComponent,
     PostModalComponent,
     ShowAllUsersComponent,
-    NetworkTrendsComponent
+    NetworkTrendsComponent,
+    NearbyPostsMapComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,11 @@ import { NetworkTrendsComponent } from './posts/network-trends/network-trends.co
     CommonModule
   ],
   providers: [
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    
+    { provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true}
   ],
   bootstrap: [AppComponent]
 })

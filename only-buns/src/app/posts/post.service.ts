@@ -47,4 +47,9 @@ export class PostService {
       `${this.apiUrl}/analytics/top-likers-last7days`
     );
   }
+
+  getNearbyPosts(lat: number, lng: number) {
+    return this.http.get<any[]>(`${this.apiUrl}/nearby?latitude=${lat}&longitude=${lng}`);
+  }
+  
 }

@@ -64,4 +64,5 @@ export class AuthService {
   activateAccount(token: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/activate?token=${token}`);
   }
+  
 }
