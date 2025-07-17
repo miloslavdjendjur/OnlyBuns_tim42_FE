@@ -14,6 +14,9 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
 import { TrendsComponent } from './posts/trends/trends.component';
 import { AnalyticsComponent } from './posts/analytics/analytics.component';
 import { AdminPageComponent } from './users/admin-page/admin-page.component';
+import { ChatListComponent } from './chatting/chat-list/chat-list.component';
+import { NewChatComponent } from './chatting/new-chat/new-chat.component';
+import { ChatComponent } from './chatting/chat/chat.component';
 
 const routes: Routes = [
   { path: '', component: PostFeedComponent }, 
@@ -28,6 +31,9 @@ const routes: Routes = [
   { path: 'trends', component: TrendsComponent},
   { path: 'analytics', component: AnalyticsComponent},
   { path: 'admin-page', component: AdminPageComponent},
+  { path: 'chats',component: ChatListComponent},
+  { path: 'chats/new',component: NewChatComponent},
+  { path: 'chat/:id',component: ChatComponent},
   { path: 'users',component: ShowAllUsersComponent},
   { path: '**', redirectTo: '' }
 ];

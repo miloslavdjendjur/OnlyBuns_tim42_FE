@@ -24,6 +24,9 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
 import { TrendsComponent } from './posts/trends/trends.component';
 import { AnalyticsComponent } from './posts/analytics/analytics.component';
 import { NgChartsModule } from 'ng2-charts';
+import { ChatListComponent } from './chatting/chat-list/chat-list.component';
+import { ChatComponent } from './chatting/chat/chat.component';
+import { NewChatComponent } from './chatting/new-chat/new-chat.component';
 
 
 
@@ -44,7 +47,10 @@ import { NgChartsModule } from 'ng2-charts';
     AdminPageComponent,
     EditPostComponent,
     TrendsComponent,
-    AnalyticsComponent
+    AnalyticsComponent,
+    ChatListComponent,
+    ChatComponent,
+    NewChatComponent
   ],
   imports: [
     BrowserModule,
