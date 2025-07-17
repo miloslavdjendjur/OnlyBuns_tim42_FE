@@ -5,6 +5,7 @@ import { Post } from './model/post-feed.model';
 import { Comment } from './model/comment.model';
 import { HttpParams } from '@angular/common/http';
 import { user } from './model/user';
+import { CareLocation } from './model/care-location.model';
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +52,9 @@ export class PostService {
   getNearbyPosts(lat: number, lng: number) {
     return this.http.get<any[]>(`${this.apiUrl}/nearby?latitude=${lat}&longitude=${lng}`);
   }
+
+  getCareLocations(): Observable<CareLocation[]> {
+  return this.http.get<CareLocation[]>('http://localhost:8080/api/care-locations');
+}
   
 }
