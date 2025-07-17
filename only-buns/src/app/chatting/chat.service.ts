@@ -15,19 +15,33 @@ export class ChatService {
   private stompClient: any;
   private messageSubject = new Subject<Message>();
   public messages$ = this.messageSubject.asObservable();
+  private isConnected = false;
+  private connectionInProgress = false;
 
   constructor(private http: HttpClient) {}
 
-  connectWebSocket(userId: number): void {
-  const socket = new SockJS('http://localhost:8080/ws-chat');
-  this.stompClient = Stomp.Stomp.over(socket);
+   connectWebSocket(userId: number): void {
+    // Proveri da li je vec povezan ili se povezuje
+    if (this.isConnected || this.connectionInProgress) {
+      console.log('WebSocket je već povezan ili se povezuje');
+      return;
+    }
+
+    this.connectionInProgress = true;
+    const socket = new SockJS('http://localhost:8080/ws-chat');
+    this.stompClient = Stomp.Stomp.over(socket);
 
     this.stompClient.connect({}, (frame: any) => {
       console.log('Connected to WebSocket');
-      console.log('Frame:', frame);
+      this.isConnected = true;
+      this.connectionInProgress = false;
       
-      // Proveri da li je konekcija stvarno aktivna
-      console.log('Je li povezan?', this.stompClient.connected);
+      // Prvo se unsubscribe od svih postojećih
+      if (this.stompClient.subscriptions) {
+        Object.keys(this.stompClient.subscriptions).forEach(id => {
+          this.stompClient.unsubscribe(id);
+        });
+      }
       
       this.getUserChats(userId).subscribe(chats => {
         chats.forEach(chat => {
@@ -36,19 +50,31 @@ export class ChatService {
       });
     }, (error: any) => {
       console.error('WebSocket connection error:', error);
+      this.isConnected = false;
+      this.connectionInProgress = false;
     });
   }
 
   private subscribeToChat(chatId: number): void {
+    // Unique ID za subscription
+    const subscriptionId = `chat-${chatId}`;
+    
+    // Proveri da li vec postoji subscription
+    if (this.stompClient.subscriptions && this.stompClient.subscriptions[subscriptionId]) {
+      return;
+    }
+    
     this.stompClient.subscribe(`/topic/chat/${chatId}`, (message: any) => {
       const messageData: Message = JSON.parse(message.body);
       this.messageSubject.next(messageData);
-    });
+    }, { id: subscriptionId }); // Dodaj ID
   }
 
   disconnectWebSocket(): void {
     if (this.stompClient && this.stompClient.connected) {
       this.stompClient.disconnect();
+      this.isConnected = false;
+      console.log('WebSocket disconnected');
     }
   }
 

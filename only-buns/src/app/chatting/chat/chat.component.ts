@@ -53,13 +53,13 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         }
       });
 
-      // Subscribe to new messages
+      // Subscribe na novu poruku
       this.messageSubscription = this.chatService.messages$.subscribe(message => {
         if (this.chat && message.chatId === this.chat.id) {
           this.messages.push(message);
           this.shouldScrollToBottom = true;
           
-          // Mark messages as read if they're not from current user
+          // Oznaci kao procitane u koliko nisu moje
           if (message.senderId !== this.currentUserId) {
             this.chatService.markMessagesAsRead(this.chat.id, this.currentUserId).subscribe();
           }
@@ -87,7 +87,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.chat = chats.find(c => c.id === chatId);
       if (this.chat) {
         this.loadParticipants();
-        // Mark messages as read
+        // Oznaci kao procitanu
         this.chatService.markMessagesAsRead(chatId, this.currentUserId).subscribe();
       }
     });
@@ -95,7 +95,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   loadMessages(chatId: number): void {
     this.chatService.getChatMessages(chatId, this.currentUserId).subscribe(messages => {
-      this.messages = messages.reverse(); // Reverse to show oldest first
+      this.messages = messages.reverse(); // Da bi se najstarije pokazale 1.
       this.shouldScrollToBottom = true;
     });
   }
@@ -131,7 +131,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   loadAllUsers(): void {
     this.userService.getAllUsers(this.currentUserId).subscribe(users => {
-      // Filter out users already in chat
       if (this.chat) {
         this.allUsers = users.filter(u => !this.chat!.participantIds.includes(u.id));
       }

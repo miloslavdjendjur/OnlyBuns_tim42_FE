@@ -71,7 +71,7 @@ export class NewChatComponent implements OnInit {
 
     this.chatService.createChat(this.currentUserId, chatData).subscribe(
       chat => {
-        this.router.navigate(['/chat', chat.id]);
+        this.router.navigate(['/chat/', chat.id]);
       },
       error => {
         console.error('Greška pri kreiranju četa:', error);

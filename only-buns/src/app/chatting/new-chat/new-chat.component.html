@@ -18,6 +18,7 @@
            (click)="toggleUserSelection(user.id)">
         <input type="checkbox" 
                [checked]="isUserSelected(user.id)"
+               (change)="toggleUserSelection(user.id)"
                (click)="$event.stopPropagation()">
         <span>{{ user.fullName }}</span>
       </div>
