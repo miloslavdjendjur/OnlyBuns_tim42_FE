@@ -39,4 +39,8 @@ export class UserService {
   getShowUserById(id: number): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/show/${id}`);
   }
+
+  getMyProfile(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/me`);
+  }
 }

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreatePostComponent } from './posts/create-post/create-post.component';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch } from '@angular/common/http';
 import { LoginComponent } from './infrastructure/auth/login/login.component';
 import { RegisterComponent } from './infrastructure/auth/register/register.component';
 import { ActivationComponent } from './infrastructure/auth/activation/activation.component';
@@ -24,7 +24,9 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
 import { TrendsComponent } from './posts/trends/trends.component';
 import { AnalyticsComponent } from './posts/analytics/analytics.component';
 import { NgChartsModule } from 'ng2-charts';
-
+import { NetworkTrendsComponent } from './posts/network-trends/network-trends.component';
+import { NearbyPostsMapComponent } from './posts/nearby-posts-map/nearby-posts-map.component';
+import { AuthInterceptor } from './auth.interceptor';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { NgChartsModule } from 'ng2-charts';
     AdminPageComponent,
     EditPostComponent,
     TrendsComponent,
-    AnalyticsComponent
+    AnalyticsComponent,
+    NetworkTrendsComponent,
+    NearbyPostsMapComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,11 @@ import { NgChartsModule } from 'ng2-charts';
     NgChartsModule
   ],
   providers: [
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    
+    { provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true}
   ],
   bootstrap: [AppComponent]
 })

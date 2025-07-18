@@ -14,6 +14,8 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
 import { TrendsComponent } from './posts/trends/trends.component';
 import { AnalyticsComponent } from './posts/analytics/analytics.component';
 import { AdminPageComponent } from './users/admin-page/admin-page.component';
+import { NetworkTrendsComponent } from './posts/network-trends/network-trends.component';
+import { NearbyPostsMapComponent } from './posts/nearby-posts-map/nearby-posts-map.component';
 
 const routes: Routes = [
   { path: '', component: PostFeedComponent }, 
@@ -29,6 +31,8 @@ const routes: Routes = [
   { path: 'analytics', component: AnalyticsComponent},
   { path: 'admin-page', component: AdminPageComponent},
   { path: 'users',component: ShowAllUsersComponent},
+  { path: 'trends', component: NetworkTrendsComponent},
+  { path: 'nearby', component: NearbyPostsMapComponent},
   { path: '**', redirectTo: '' }
 ];
 

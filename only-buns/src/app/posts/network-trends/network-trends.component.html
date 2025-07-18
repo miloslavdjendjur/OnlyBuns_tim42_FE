@@ -1,0 +1,28 @@
+<div class="trends-container">
+    <h2>Mrežni trendovi</h2>
+  
+    <p><strong>Ukupan broj objava:</strong> {{ totalPosts }}</p>
+    <p><strong>Broj objava u prethodnih mesec dana:</strong> {{ postsLastMonth }}</p>
+  
+    <h3>Top 5 najlajkovanijih objava u poslednjih 7 dana</h3>
+    <ul>
+      <li *ngFor="let post of topPostsLastWeek">
+        {{ post.description }} — {{ post.likes }} lajkova ({{ post.createdDate | date:'shortDate' }})
+      </li>
+    </ul>
+  
+    <h3>Top 10 najlajkovanijih objava svih vremena</h3>
+    <ul>
+      <li *ngFor="let post of topPostsAllTime">
+        {{ post.description }} — {{ post.likes }} lajkova ({{ post.createdDate | date:'shortDate' }})
+      </li>
+    </ul>
+  
+    <h3>Top 10 korisnika koji su dali najviše lajkova (u poslednjih 7 dana)</h3>
+    <ul>
+      <li *ngFor="let liker of topLikers">
+        {{ liker.username }} — {{ liker.likeCount }} lajkova
+      </li>
+    </ul>
+  </div>
+  
