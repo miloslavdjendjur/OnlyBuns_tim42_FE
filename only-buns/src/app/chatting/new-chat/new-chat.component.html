@@ -27,7 +27,7 @@
 
   <div class="form-actions">
     <button (click)="createChat()" 
-            [disabled]="selectedUsers.length === 0 || !groupName.trim()"
+            [disabled]="!groupName.trim()"
             class="btn btn-primary">
       Kreiraj grupu
     </button>

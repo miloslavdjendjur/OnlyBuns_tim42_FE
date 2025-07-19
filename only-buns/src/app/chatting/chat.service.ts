@@ -17,6 +17,8 @@ export class ChatService {
   public messages$ = this.messageSubject.asObservable();
   private isConnected = false;
   private connectionInProgress = false;
+  private userRemovedSubject = new Subject<any>();
+  public userRemoved$ = this.userRemovedSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -46,6 +48,7 @@ export class ChatService {
       this.getUserChats(userId).subscribe(chats => {
         chats.forEach(chat => {
           this.subscribeToChat(chat.id);
+          this.subscribeToRemove(userId);
         });
       });
     }, (error: any) => {
@@ -69,6 +72,12 @@ export class ChatService {
       this.messageSubject.next(messageData);
     }, { id: subscriptionId }); // Dodaj ID
   }
+  private subscribeToRemove(userId: number) : void{
+    this.stompClient.subscribe(`/topic/user/${userId}/removed`, (notification: any) => {
+      const data = JSON.parse(notification.body);
+      this.userRemovedSubject.next(data);
+    });
+  }
 
   disconnectWebSocket(): void {
     if (this.stompClient && this.stompClient.connected) {
@@ -77,6 +86,11 @@ export class ChatService {
       console.log('WebSocket disconnected');
     }
   }
+  subscribeToNewChat(chatId: number): void {
+  if (this.stompClient && this.stompClient.connected) {
+    this.subscribeToChat(chatId);
+  }
+}
 
   createChat(userId: number, chatData: CreateChat): Observable<Chat> {
     return this.http.post<Chat>(`${this.apiUrl}/create/${userId}`, chatData);

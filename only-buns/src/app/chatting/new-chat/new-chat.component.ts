@@ -54,10 +54,6 @@ export class NewChatComponent implements OnInit {
   }
 
   createChat(): void {
-    if (this.selectedUsers.length === 0) {
-      alert('Molimo izaberite bar jednog korisnika');
-      return;
-    }
 
     if (!this.groupName.trim()) {
       alert('Molimo unesite naziv grupe');
@@ -71,6 +67,7 @@ export class NewChatComponent implements OnInit {
 
     this.chatService.createChat(this.currentUserId, chatData).subscribe(
       chat => {
+        this.chatService.subscribeToNewChat(chat.id);
         this.router.navigate(['/chat/', chat.id]);
       },
       error => {

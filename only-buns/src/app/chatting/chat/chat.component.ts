@@ -28,6 +28,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   selectedUserId?: number;
 
   private messageSubscription?: Subscription;
+  private removedSubscription?: Subscription;
   private shouldScrollToBottom = true;
 
   constructor(
@@ -65,6 +66,12 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           }
         }
       });
+      this.removedSubscription = this.chatService.userRemoved$.subscribe(notification => {
+        if (this.chat && notification.chatId === this.chat.id) {
+          alert('Uklonjeni ste iz ovog četa!');
+          this.router.navigate(['/chats']);
+        }
+      });
     } else {
       this.router.navigate(['/login']);
     }
@@ -73,6 +80,9 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   ngOnDestroy(): void {
     if (this.messageSubscription) {
       this.messageSubscription.unsubscribe();
+    }
+    if (this.removedSubscription) {
+    this.removedSubscription.unsubscribe();
     }
   }
 
@@ -95,7 +105,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   loadMessages(chatId: number): void {
     this.chatService.getChatMessages(chatId, this.currentUserId).subscribe(messages => {
-      this.messages = messages.reverse(); // Da bi se najstarije pokazale 1.
+      this.messages = messages;
       this.shouldScrollToBottom = true;
     });
   }

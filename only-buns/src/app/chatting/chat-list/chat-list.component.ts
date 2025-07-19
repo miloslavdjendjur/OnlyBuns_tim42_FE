@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Chat } from '../model/chat.model';
 import { ChatService } from '../chat.service';
 import { AuthService } from '../../posts/auth.service';
+import { Message } from '../model/message.model';
 
 @Component({
   selector: 'app-chat-list',
@@ -24,10 +25,18 @@ export class ChatListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const user = this.authService.getLoggedInUser();
     if (user) {
+      this.chats = [];
+      //Ciscenje starih subskripcija
+      this.chatService.disconnectWebSocket();
+
       this.currentUserId = user.id;
       
       this.loadChats();
       this.chatService.connectWebSocket(this.currentUserId);
+
+      if (this.messageSubscription) {
+      this.messageSubscription.unsubscribe();
+      }
       
       this.messageSubscription = this.chatService.messages$.subscribe(message => {
         const chatIndex = this.chats.findIndex(c => c.id === message.chatId);
