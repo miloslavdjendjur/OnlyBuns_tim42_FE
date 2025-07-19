@@ -6,6 +6,7 @@ import { Comment } from './model/comment.model';
 import { HttpParams } from '@angular/common/http';
 import { user } from './model/user';
 import { CareLocation } from './model/care-location.model';
+import { PostDetailDTO } from './model/post-detail.model';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +62,14 @@ export class PostService {
 
   getCareLocations(): Observable<CareLocation[]> {
   return this.http.get<CareLocation[]>('http://localhost:8080/api/care-locations');
-}
+  }
+
+  getTopPostsLastWeek(): Observable<PostDetailDTO[]> {
+    return this.http.get<PostDetailDTO[]>(`${this.apiUrl}/analytics/top-posts-week`);
+  }
+
+  getTopPostsAllTime(): Observable<PostDetailDTO[]> {
+    return this.http.get<PostDetailDTO[]>(`${this.apiUrl}/analytics/top-posts-alltime`);
+  }
   
 }

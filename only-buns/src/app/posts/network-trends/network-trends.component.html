@@ -1,28 +1,40 @@
 <div class="trends-container">
-    <h2>Mrežni trendovi</h2>
-  
-    <p><strong>Ukupan broj objava:</strong> {{ totalPosts }}</p>
-    <p><strong>Broj objava u prethodnih mesec dana:</strong> {{ postsLastMonth }}</p>
-  
-    <h3>Top 5 najlajkovanijih objava u poslednjih 7 dana</h3>
-    <ul>
-      <li *ngFor="let post of topPostsLastWeek">
-        {{ post.description }} — {{ post.likes }} lajkova ({{ post.createdDate | date:'shortDate' }})
-      </li>
-    </ul>
-  
-    <h3>Top 10 najlajkovanijih objava svih vremena</h3>
-    <ul>
-      <li *ngFor="let post of topPostsAllTime">
-        {{ post.description }} — {{ post.likes }} lajkova ({{ post.createdDate | date:'shortDate' }})
-      </li>
-    </ul>
-  
-    <h3>Top 10 korisnika koji su dali najviše lajkova (u poslednjih 7 dana)</h3>
+  <h2>Trendovi u mreži</h2>
+
+  <div class="stat-box">
+    <p>Ukupan broj objava: {{ totalPosts }}</p>
+    <p>Objave u poslednjih 30 dana: {{ postsLastMonth }}</p>
+  </div>
+
+  <h3>Top objave - poslednjih 7 dana</h3>
+  <div *ngIf="topPostsLastWeek.length > 0; else noWeeklyPosts">
+    <div *ngFor="let post of topPostsLastWeek" class="trend-card">
+      <strong>{{ post.username }}</strong>
+      <p>{{ post.description }}</p>
+      <p>Broj lajkova: {{ post.likes }}</p>
+      <p>Objavljeno: {{ post.createdDate | date:'short' }}</p>
+    </div>
+  </div>
+  <ng-template #noWeeklyPosts><p>Nema objava u prethodnih 7 dana.</p></ng-template>
+
+  <h3>Top objave - svih vremena</h3>
+  <div *ngIf="topPostsAllTime.length > 0; else noAllTimePosts">
+    <div *ngFor="let post of topPostsAllTime" class="trend-card">
+      <strong>{{ post.username }}</strong>
+      <p>{{ post.description }}</p>
+      <p>Broj lajkova: {{ post.likes }}</p>
+      <p>Objavljeno: {{ post.createdDate | date:'short' }}</p>
+    </div>
+  </div>
+  <ng-template #noAllTimePosts><p>Nema pronađenih top objava.</p></ng-template>
+
+  <h3>Top korisnici koji lajkuju - poslednjih 7 dana</h3>
+  <div *ngIf="topLikers.length > 0; else noTopLikers">
     <ul>
       <li *ngFor="let liker of topLikers">
-        {{ liker.username }} — {{ liker.likeCount }} lajkova
+        {{ liker.username }} - {{ liker.likeCount }} lajkova
       </li>
     </ul>
   </div>
-  
+  <ng-template #noTopLikers><p>Nema top korisnika koji lajkuju.</p></ng-template>
+</div>

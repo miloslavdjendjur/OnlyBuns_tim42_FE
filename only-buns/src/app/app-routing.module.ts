@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'analytics', component: AnalyticsComponent},
   { path: 'admin-page', component: AdminPageComponent},
   { path: 'users',component: ShowAllUsersComponent},
-  { path: 'trends', component: NetworkTrendsComponent},
+  { path: 'network-trends', component: NetworkTrendsComponent},
   { path: 'nearby', component: NearbyPostsMapComponent},
   { path: '**', redirectTo: '' }
 ];
