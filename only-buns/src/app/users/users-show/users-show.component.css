@@ -37,4 +37,53 @@
 .search-container input, .sort-container button {
     margin-right: 10px;
   }
+  .pagination-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.pagination-info {
+  color: #666;
+  font-size: 14px;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pagination-btn, .pagination-number {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.pagination-btn:hover:not(:disabled), 
+.pagination-number:hover {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-number.active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.users-list {
+  min-height: 400px;
+}
   

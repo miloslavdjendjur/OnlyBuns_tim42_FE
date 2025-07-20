@@ -1,0 +1,37 @@
+<div class="chat-list-container">
+  <div class="chat-list-header">
+    <h2>Grupni četovi</h2>
+    <button class="new-chat-btn" (click)="createNewChat()">
+      <i class="fas fa-plus"></i> Nova grupa
+    </button>
+  </div>
+
+  <div class="chat-list">
+    <div *ngFor="let chat of chats" 
+         class="chat-item" 
+         [class.unread]="chat.unreadCount > 0"
+         (click)="openChat(chat.id)">
+      
+      <div class="chat-avatar">
+        <i class="fas fa-users"></i>
+      </div>
+
+      <div class="chat-info">
+        <div class="chat-name">{{ chat.name }}</div>
+        <div class="last-message" *ngIf="chat.lastMessage">
+          <span class="sender">{{ chat.lastMessage.senderName }}:</span>
+          {{ chat.lastMessage.content }}
+        </div>
+      </div>
+
+      <div class="chat-meta">
+        <div class="timestamp" *ngIf="chat.lastMessage">
+          {{ formatTime(chat.lastMessage.timestamp) }}
+        </div>
+        <div class="unread-badge" *ngIf="chat.unreadCount > 0">
+          {{ chat.unreadCount }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

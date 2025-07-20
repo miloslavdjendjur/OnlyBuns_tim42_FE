@@ -1,0 +1,36 @@
+<div class="new-chat-container">
+  <h2>Kreiraj novu grupu</h2>
+  
+  <div class="form-group">
+    <label>Naziv grupe</label>
+    <input type="text" 
+           [(ngModel)]="groupName" 
+           placeholder="Unesite naziv grupe"
+           class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label>Izaberite učesnike</label>
+    <div class="user-list">
+      <div *ngFor="let user of users" 
+           class="user-item"
+           [class.selected]="isUserSelected(user.id)"
+           (click)="toggleUserSelection(user.id)">
+        <input type="checkbox" 
+               [checked]="isUserSelected(user.id)"
+               (change)="toggleUserSelection(user.id)"
+               (click)="$event.stopPropagation()">
+        <span>{{ user.fullName }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button (click)="createChat()" 
+            [disabled]="!groupName.trim()"
+            class="btn btn-primary">
+      Kreiraj grupu
+    </button>
+    <button (click)="cancel()" class="btn btn-secondary">Otkaži</button>
+  </div>
+</div>

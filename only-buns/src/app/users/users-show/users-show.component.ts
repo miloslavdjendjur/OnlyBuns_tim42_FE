@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from '../model/user.model';
 import { AuthService } from '../../posts/auth.service';
+import { Page } from '../model/page.model';
 
 @Component({
   selector: 'app-users-show',
@@ -16,6 +17,16 @@ export class UsersShowComponent implements OnInit {
   searchMinPosts?: number;
   searchMaxPosts?: number;
   adminLogged : boolean = false;
+
+  currentPage: number = 0;
+  pageSize: number = 5;
+  totalPages: number = 0;
+  totalElements: number = 0;
+  isFirstPage: boolean = true;
+  isLastPage: boolean = false;
+
+  currentSortField?: string;
+  currentSortOrder: 'asc' | 'desc' = 'asc';
 
   constructor(private service: UserService, private authService: AuthService) {}
 
@@ -32,10 +43,24 @@ export class UsersShowComponent implements OnInit {
 
   loadUsers(): void {
     if (this.userId) {
-      this.service.getAllUsers(this.userId).subscribe({
-        next: (result: User[]) => {
-          this.users = result;
-          //console.log(result);
+      this.service.filterUsers(
+        this.userId, 
+        this.searchName || undefined, 
+        '', 
+        this.searchEmail || undefined, 
+        this.searchMinPosts, 
+        this.searchMaxPosts,
+        this.currentSortField,
+        this.currentSortOrder,
+        this.currentPage,
+        this.pageSize
+      ).subscribe({
+        next: (result: Page<User>) => {
+          this.users = result.content;
+          this.totalPages = result.totalPages;
+          this.totalElements = result.totalElements;
+          this.isFirstPage = result.first;
+          this.isLastPage = result.last;
         },
         error: (err: any) => {
           console.log(err);
@@ -45,26 +70,38 @@ export class UsersShowComponent implements OnInit {
   }
 
   searchUsers(): void {
-    if (this.userId) {
-      this.service.filterUsers(this.userId, this.searchName, '', this.searchEmail, this.searchMinPosts, this.searchMaxPosts).subscribe({
-        next: (result: User[]) => {
-          this.users = result;
-        },
-        error: (err: any) => {
-          console.log("Error filtering users:", err);
-        }
-      });
+    this.currentPage = 0; 
+    this.loadUsers();
+  }
+
+  sortUsers(field: string, order: 'asc' | 'desc'): void {
+    this.currentSortField = field;
+    this.currentSortOrder = order;
+    this.currentPage = 0;
+    this.loadUsers();
+  }
+  goToPage(page: number): void {
+    if (page >= 0 && page < this.totalPages) {
+      this.currentPage = page;
+      this.loadUsers();
     }
   }
-
-  sortUsers(field: keyof User, order: 'asc' | 'desc'): void {
-    this.users.sort((a, b) => {
-      const valA = a[field];
-      const valB = b[field];
-
-      if (valA < valB) return order === 'asc' ? -1 : 1;
-      if (valA > valB) return order === 'asc' ? 1 : -1;
-      return 0;
-    });
+  previousPage(): void {
+    if (!this.isFirstPage) {
+      this.goToPage(this.currentPage - 1);
+    }
   }
+  nextPage(): void {
+    if (!this.isLastPage) {
+      this.goToPage(this.currentPage + 1);
+    }
+  }
+  getPageNumbers(): number[] {
+    const pages: number[] = [];
+    for (let i = 0; i < this.totalPages; i++) {
+      pages.push(i);
+    }
+    return pages;
+  }
+
 }

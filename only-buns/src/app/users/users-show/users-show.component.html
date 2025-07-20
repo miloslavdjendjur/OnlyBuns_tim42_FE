@@ -17,12 +17,35 @@
       <button (click)="sortUsers('followsPeople', 'desc')">Sort by Follows Desc</button>
     </div>
   
-    <div *ngFor="let user of users" class="user-card">
-      <div class="user-info">
-        <p><strong>Name:</strong> {{ user.fullName }}</p>
-        <p><strong>Email:</strong> {{ user.email }}</p>
-        <p><strong>Number of Posts:</strong> {{ user.postNumber }}</p>
-        <p><strong>Follows:</strong> {{ user.followsPeople }}</p>
+    <div *ngIf="adminLogged === true" class="users-list">
+      <div *ngFor="let user of users" class="user-card">
+        <div class="user-info">
+          <p><strong>Name:</strong> {{ user.fullName }}</p>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <p><strong>Number of Posts:</strong> {{ user.postNumber }}</p>
+          <p><strong>Follows:</strong> {{ user.followsPeople }}</p>
+        </div>
       </div>
     </div>
-  </div>
+     <div *ngIf="adminLogged === true && totalPages > 0" class="pagination-container">
+    <div class="pagination-info">
+      Prikazano {{ users.length }} od {{ totalElements }} korisnika
+    </div>
+    
+    <div class="pagination-controls">
+      <button [disabled]="isFirstPage" (click)="previousPage()" class="pagination-btn">
+        Prethodna
+      </button>
+      
+      <button *ngFor="let pageNum of getPageNumbers()" 
+              [class.active]="pageNum === currentPage"
+              (click)="goToPage(pageNum)"
+              class="pagination-number">
+        {{ pageNum + 1 }}
+      </button>
+      
+      <button [disabled]="isLastPage" (click)="nextPage()" class="pagination-btn">
+        Sledeća
+      </button>
+    </div>
+</div>

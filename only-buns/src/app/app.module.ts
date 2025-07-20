@@ -27,6 +27,10 @@ import { NgChartsModule } from 'ng2-charts';
 import { NetworkTrendsComponent } from './posts/network-trends/network-trends.component';
 import { NearbyPostsMapComponent } from './posts/nearby-posts-map/nearby-posts-map.component';
 import { AuthInterceptor } from './auth.interceptor';
+import { ChatListComponent } from './chatting/chat-list/chat-list.component';
+import { ChatComponent } from './chatting/chat/chat.component';
+import { NewChatComponent } from './chatting/new-chat/new-chat.component';
+
 
 
 @NgModule({
@@ -48,7 +52,10 @@ import { AuthInterceptor } from './auth.interceptor';
     TrendsComponent,
     AnalyticsComponent,
     NetworkTrendsComponent,
-    NearbyPostsMapComponent
+    NearbyPostsMapComponent,
+    ChatListComponent,
+    ChatComponent,
+    NewChatComponent
   ],
   imports: [
     BrowserModule,

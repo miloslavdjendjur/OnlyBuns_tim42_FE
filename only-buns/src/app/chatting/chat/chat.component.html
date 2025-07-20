@@ -1,0 +1,68 @@
+<div class="chat-container" *ngIf="chat">
+  <div class="chat-header">
+    <h3>{{ chat.name }}</h3>
+    <div class="chat-actions">
+      <button (click)="toggleParticipants()" class="btn-icon">
+        <i class="fas fa-users"></i>
+      </button>
+      <button *ngIf="isAdmin()" (click)="toggleAddUser()" class="btn-icon">
+        <i class="fas fa-user-plus"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="chat-content">
+    <div class="messages-container" #scrollContainer>
+      <div *ngFor="let message of messages" 
+           class="message"
+           [ngClass]="{'own-message': message.senderId === currentUserId}">
+        
+        <div class="message-header">
+          <span class="sender-name">{{ message.senderName }}</span>
+          <span class="timestamp">{{ formatTime(message.timestamp) }}</span>
+        </div>
+        
+        <div class="message-content">
+          {{ message.content }}
+        </div>
+      </div>
+    </div>
+
+    <div class="participants-panel" *ngIf="showParticipants">
+      <h4>Učesnici</h4>
+      <div *ngFor="let participant of participants" class="participant-item">
+        <span>{{ participant.fullName }}</span>
+        <span *ngIf="chat.adminId === participant.id" class="admin-badge">Admin</span>
+        <button *ngIf="isAdmin() && participant.id !== currentUserId" 
+                (click)="removeUserFromChat(participant.id)"
+                class="btn-remove">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="add-user-panel" *ngIf="showAddUser">
+      <h4>Dodaj korisnika</h4>
+      <select [(ngModel)]="selectedUserId" class="user-select">
+        <option [ngValue]="undefined">Izaberite korisnika</option>
+        <option *ngFor="let user of allUsers" [ngValue]="user.id">
+          {{ user.fullName }}
+        </option>
+      </select>
+      <button (click)="addUserToChat()" [disabled]="!selectedUserId" class="btn-add">
+        Dodaj u grupu
+      </button>
+    </div>
+  </div>
+
+  <div class="message-input-container">
+    <input type="text" 
+           [(ngModel)]="newMessage" 
+           (keyup.enter)="sendMessage()"
+           placeholder="Unesite poruku..."
+           class="message-input">
+    <button (click)="sendMessage()" class="send-button">
+      <i class="fas fa-paper-plane"></i>
+    </button>
+  </div>
+</div>
