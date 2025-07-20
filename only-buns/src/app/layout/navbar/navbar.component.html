@@ -16,20 +16,13 @@
       <div class="center-nav-icons" *ngIf="isAuthenticated">
         <ul class="nav-icons">
           <li><a (click)="navigateHome()"><i class="fas fa-home"></i></a></li>
-          <li><a routerLink="/trends"><i class="fa fa-compass" aria-hidden="true"></i></a></li>
+          <li><a routerLink="/network-trends"><i class="fa fa-compass" aria-hidden="true"></i></a></li>
           <li><a routerLink="/create-post"><i class="far fa-plus-square"></i></a></li>
           <li><a routerLink="/nearby"><i class="fa fa-map-marker" aria-hidden="true"></i></a></li>
-          <li><a routerLink="/chat"><i class="fas fa-comments"></i></a></li>
+          <li><a routerLink="/chats"><i class="fas fa-comments"></i></a></li>
+          <li><a routerLink="/users"><i class="fa fa-user" aria-hidden="true"></i></a></li>
         </ul>
       </div>
-  
-      <ng-container *ngIf="isAdmin">
-            <ul class="nav-icons">
-                <li><a routerLink="/all-posts">All Posts</a></li>
-                <li><a routerLink="/user-analytics">User Analytics</a></li>
-                <li><a routerLink="/user-profiles">User Profiles</a></li>
-            </ul>
-      </ng-container>
 
     <!-- User icon with dropdown on the right side -->
     <div class="user-menu">

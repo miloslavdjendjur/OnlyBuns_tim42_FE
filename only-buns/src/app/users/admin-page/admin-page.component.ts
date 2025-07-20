@@ -29,15 +29,6 @@ export class AdminPageComponent implements OnInit {
   }
 
   loadStatistics(): void {
-    // TODO: Implementirati pozive ka backend servisu
-    // this.adminService.getStatistics().subscribe({
-    //   next: (stats) => {
-    //     this.totalUsers = stats.totalUsers;
-    //     this.totalPosts = stats.totalPosts;
-    //     this.activeToday = stats.activeToday;
-    //     this.newUsers = stats.newUsers;
-    //   },
-    //   error: (err) => console.error('Error loading statistics:', err)
-    // });
+    //Brza statistika, ako budem imao vremena dodacu poziv ka back-u
   }
 }

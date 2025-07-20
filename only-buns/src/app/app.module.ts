@@ -21,7 +21,6 @@ import { PostModalComponent } from './posts/post-modal/post-modal.component';
 import { ShowAllUsersComponent } from './users/show-all-users/show-all-users.component';
 import { AdminPageComponent } from './users/admin-page/admin-page.component';
 import { EditPostComponent } from './posts/edit-post/edit-post.component';
-import { TrendsComponent } from './posts/trends/trends.component';
 import { AnalyticsComponent } from './posts/analytics/analytics.component';
 import { NgChartsModule } from 'ng2-charts';
 import { NetworkTrendsComponent } from './posts/network-trends/network-trends.component';
@@ -49,7 +48,6 @@ import { NewChatComponent } from './chatting/new-chat/new-chat.component';
     ShowAllUsersComponent,
     AdminPageComponent,
     EditPostComponent,
-    TrendsComponent,
     AnalyticsComponent,
     NetworkTrendsComponent,
     NearbyPostsMapComponent,
