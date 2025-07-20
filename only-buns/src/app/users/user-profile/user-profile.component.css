@@ -1,0 +1,43 @@
+.profile-card {
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  margin-bottom: 20px;
+}
+
+.password-section {
+  margin-top: 24px;
+}
+
+.password-form input {
+  display: block;
+  margin: 8px 0;
+  padding: 8px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}
+
+.password-form button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.password-form button:hover {
+  background-color: #0056b3;
+}
+
+.post-card {
+  padding: 12px;
+  margin-bottom: 10px;
+  border-left: 4px solid #007bff;
+  background-color: #eef5ff;
+  border-radius: 6px;
+}

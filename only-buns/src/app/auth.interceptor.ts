@@ -8,7 +8,9 @@ export class AuthInterceptor implements HttpInterceptor {
     const token = localStorage.getItem('authToken');
 
     const protectedUrls = [
-        '/api/users/me'
+        '/api/users/me',
+        '/api/users/change-password',
+        '/api/users/profile'
     ];
 
     const shouldAttachToken = protectedUrls.some(url => request.url.includes(url));

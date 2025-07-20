@@ -1,14 +1,29 @@
-<div *ngIf="user; else errorTemplate">
-    <h2>{{ user.fullName }}'s Profile</h2>
-    <div class="profile-card">
-      <p><strong>ID:</strong> {{ user.id }}</p>
-      <p><strong>Email:</strong> {{ user.email }}</p>
-      <p><strong>Number of Posts:</strong> {{ user.postNumber }}</p>
-      <p><strong>Follows People:</strong> {{ user.followsPeople }}</p>
-    </div>
+<div *ngIf="profile; else errorTemplate">
+  <h2>{{ profile.fullName }}'s Profile</h2>
+
+  <div class="profile-card">
+    <p><strong>Email:</strong> {{ profile.email }}</p>
+    <p><strong>Address:</strong> {{ profile.address }}</p>
+    <p><strong>Followers:</strong> {{ profile.followersCount }}</p>
   </div>
-  
-  <ng-template #errorTemplate>
-    <p class="error">{{ errorMessage }}</p>
-  </ng-template>
-  
+
+  <div *ngIf="profile.editable" class="password-section">
+    <h3>Change Password</h3>
+    <form (ngSubmit)="changePassword()" class="password-form">
+      <input type="password" [(ngModel)]="password" name="password" placeholder="New Password" required>
+      <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+      <button type="submit">Change Password</button>
+    </form>
+  </div>
+
+  <h3>User's Posts</h3>
+  <div *ngFor="let post of posts" class="post-card">
+    <p><strong>Description:</strong> {{ post.description }}</p>
+    <p><strong>Likes:</strong> {{ post.likes }}</p>
+    <p><strong>Date:</strong> {{ post.createdDate | date }}</p>
+  </div>
+</div>
+
+<ng-template #errorTemplate>
+  <p class="error">{{ errorMessage }}</p>
+</ng-template>
