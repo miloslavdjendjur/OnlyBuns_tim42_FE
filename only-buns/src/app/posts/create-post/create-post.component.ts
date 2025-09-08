@@ -72,8 +72,12 @@ export class CreatePostComponent implements OnInit {
                 this.router.navigate(['/']);
             },
             error => {
-                console.error('Error creating post', error);
-            }
+              console.error('Error creating post', error);
+
+              if (error.status === 413) {
+                  alert('Slika je prevelika! Maksimalna veličina je 25MB.');
+              } 
+          }
         );
     } else {
         console.error('User ID, location, or form is invalid');
